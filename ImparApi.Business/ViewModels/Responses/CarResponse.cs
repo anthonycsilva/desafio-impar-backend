@@ -11,7 +11,7 @@ namespace ImparApi.Business.ViewModels.Responses
     {
         public int Id { get; set; }
         public int PhotoId { get; set; }
-        public Photo Photo { get; set; }
+        public PhotoResponse Photo { get; set; }
         public string Name { get; set; }
         public string Status { get; set; }
     }

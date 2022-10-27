@@ -9,7 +9,7 @@ namespace ImparApi.Business.ViewModels.Requests
 {
     public class CarRequest
     {
-        public Photo Photo { get; set; }
+        public PhotoRequest Photo { get; set; }
         public string Name { get; set; }
         public string Status { get; set; }
     }

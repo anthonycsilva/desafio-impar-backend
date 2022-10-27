@@ -1,3 +1,4 @@
+using ImparApi.Business.AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -32,6 +33,8 @@ namespace ImparApi
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ImparApi", Version = "v1" });
             });
+
+            services.AddAutoMapper(typeof(AutoMapperConfig));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
