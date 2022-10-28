@@ -1,4 +1,5 @@
-﻿using ImparApi.Business.Interfaces.Repositories;
+﻿using ImparApi.Business.Entities;
+using ImparApi.Business.Interfaces.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,5 +10,9 @@ namespace ImparApi.Infra.Data.Repositories
 {
     public class CarRepository : ICarRepository
     {
+        public Task<List<Car>> GetAll()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

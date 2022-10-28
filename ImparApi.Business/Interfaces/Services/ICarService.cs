@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ImparApi.Business.Entities;
+using ImparApi.Business.ViewModels.Responses;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +10,6 @@ namespace ImparApi.Business.Interfaces.Services
 {
     public interface ICarService
     {
+        Task<List<CarResponse>> GetAll();
     }
 }

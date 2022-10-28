@@ -1,4 +1,8 @@
 using ImparApi.Business.AutoMapper;
+using ImparApi.Business.Interfaces.Repositories;
+using ImparApi.Business.Interfaces.Services;
+using ImparApi.Business.Services;
+using ImparApi.Infra.Data.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -35,6 +39,8 @@ namespace ImparApi
             });
 
             services.AddAutoMapper(typeof(AutoMapperConfig));
+            services.AddScoped<ICarRepository, CarRepository>();
+            services.AddScoped<ICarService, CarService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
