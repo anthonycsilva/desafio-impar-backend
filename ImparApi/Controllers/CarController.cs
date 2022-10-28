@@ -1,4 +1,5 @@
-﻿using ImparApi.Business.ViewModels.Responses;
+﻿using ImparApi.Business.Interfaces.Services;
+using ImparApi.Business.ViewModels.Responses;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
@@ -8,15 +9,17 @@ namespace ImparApi.Controllers
     [Route("car")]
     public class CarController : ControllerBase
     {
-        public CarController()
+        private readonly ICarService _carService;
+        public CarController(ICarService carService)
         {
-
+            _carService = carService;
         }
 
         [HttpGet("getCars")]
-        public List<CarResponse> GetCars()
+        public async List<CarResponse> GetCars()
         {
-            return new List<CarResponse>();
+            var carsResponse = await _carService.GetAll();
+            return carsResponse;
         }
     }
 }
