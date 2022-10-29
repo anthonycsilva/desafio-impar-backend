@@ -1,4 +1,5 @@
 ﻿using ImparApi.Business.Interfaces.Services;
+using ImparApi.Business.ViewModels.Requests;
 using ImparApi.Business.ViewModels.Responses;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -21,6 +22,13 @@ namespace ImparApi.Controllers
         {
             var carsResponse = await _carService.GetAll();
             return carsResponse;
+        }
+
+        [HttpPost("AddCar")]
+        public async Task<CarResponse> AddCar(CarRequest viewModel)
+        {
+            var response = await _carService.AddCar(viewModel);
+            return response;
         }
     }
 }

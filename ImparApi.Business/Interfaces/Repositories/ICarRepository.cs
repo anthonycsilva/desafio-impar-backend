@@ -10,5 +10,6 @@ namespace ImparApi.Business.Interfaces.Repositories
     public interface ICarRepository
     {
         Task<List<Car>> GetAll();
+        Task<Car>AddCar(Car newCar);
     }
 }
