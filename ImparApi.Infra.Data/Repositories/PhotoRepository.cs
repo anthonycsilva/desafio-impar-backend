@@ -31,10 +31,6 @@ namespace ImparApi.Infra.Data.Repositories
         public async Task<Photo> GetById(int id)
         {
             var result = await _dataContext.Photos.FirstOrDefaultAsync(p => p.Id == id);
-            if (result == null)
-            {
-                throw new Exception("No photo found!");
-            }
             return result;
         }
     }

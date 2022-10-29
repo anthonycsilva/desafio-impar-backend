@@ -42,6 +42,7 @@ namespace ImparApi
             services.AddAutoMapper(typeof(AutoMapperConfig));
             services.AddScoped<ICarRepository, CarRepository>();
             services.AddScoped<ICarService, CarService>();
+            services.AddScoped<IPhotoRepository, PhotoRepository>();
             services.AddScoped<DataContext>();
         }
 
