@@ -12,6 +12,7 @@ namespace ImparApi.Business.Interfaces.Services
     public interface ICarService
     {
         Task<List<CarResponse>> GetAll();
-        Task<CarResponse>AddCar(CarRequest viewModel);
+        Task<CarResponse> AddCar(CarRequest viewModel);
+        Task RemoveCar(int carId);
     }
 }
