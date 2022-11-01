@@ -35,10 +35,14 @@ namespace ImparApi.Infra.Data.Repositories
 
         public async Task RemoveCar(int carId)
         {
-            var car = await _dataContext.Cars.Where(x => x.Id == carId).SingleAsync();
+            var car = await _dataContext.Cars
+            .Where(x => x.Id == carId)
+            .Include(x => x.Photo)
+            .SingleAsync();
             if (car is null)
                 throw new Exception("Carro nao foi encontrado para ser deletado");
             _dataContext.Cars.Remove(car);
+            _dataContext.Photos.Remove(car.Photo);
             await _dataContext.SaveChangesAsync();
 
         }
