@@ -47,5 +47,9 @@ namespace ImparApi.Business.Services
             return _mapper.Map<List<CarResponse>>(cars);
         }
 
+        public async Task RemoveCar(int carId)
+        {
+            await _carRepository.RemoveCar(carId);
+        }
     }
 }
