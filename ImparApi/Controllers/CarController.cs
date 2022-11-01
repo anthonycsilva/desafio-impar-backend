@@ -31,7 +31,7 @@ namespace ImparApi.Controllers
             return response;
         }
 
-        [HttpDelete("deleteCar")]
+        [HttpDelete("deleteCar/{carId}")]
         public async Task<ActionResult> DeleteCar(int carId)
         {
             await _carService.RemoveCar(carId);
