@@ -1,4 +1,5 @@
 ﻿using ImparApi.Business.Entities;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -10,9 +11,6 @@ namespace ImparApi.Business.ViewModels.Requests
 {
     public class CarRequest
     {
-        [Key]
-        public int PhotoId { get; set; }
-
         [Required]
         [MaxLength(255)]
         public string Name { get; set; }
@@ -20,6 +18,6 @@ namespace ImparApi.Business.ViewModels.Requests
         [Required]
         [MaxLength(255)]
         public string Status { get; set; }
-        public PhotoRequest Photo { get; set; }
+        public IFormFile Photo { get; set; }
     }
 }
