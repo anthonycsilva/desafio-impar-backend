@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using ImparApi.Business.Entities;
+using ImparApi.Business.Helpers;
 using ImparApi.Business.Interfaces.Repositories;
 using ImparApi.Business.Interfaces.Services;
 using ImparApi.Business.ViewModels.Requests;
@@ -24,20 +25,20 @@ namespace ImparApi.Business.Services
         public async Task<CarResponse> AddCar(CarRequest viewModel)
         {
             var car = new Car();
+            Photo photo = UploadPhoto(viewModel);
+            car.Photo = photo;
             car.Name = viewModel.Name;
-            var photo = await _photoRepository.GetById(viewModel.PhotoId);
-            if (photo == null)
-            {
-                if (viewModel.Photo is null)
-                {
-                    var entity = _mapper.Map<Photo>(viewModel.Photo);
-                    car.Photo = await _photoRepository.AddPhoto(entity);
-                }
-                car.Photo = _mapper.Map<Photo>(viewModel.Photo);
-            }
             car.Status = viewModel.Status;
             await _carRepository.AddCar(car);
             return _mapper.Map<CarResponse>(car);
+        }
+
+        private static Photo UploadPhoto(CarRequest viewModel)
+        {
+            var photoB64 = FileConverter.ConvertImageFileToBase64(viewModel.Photo);
+            var photo = new Photo();
+            photo.Base64 = photoB64;
+            return photo;
         }
 
         public async Task<List<CarResponse>> GetAll()
@@ -46,5 +47,9 @@ namespace ImparApi.Business.Services
             return _mapper.Map<List<CarResponse>>(cars);
         }
 
+        public async Task RemoveCar(int carId)
+        {
+            await _carRepository.RemoveCar(carId);
+        }
     }
 }

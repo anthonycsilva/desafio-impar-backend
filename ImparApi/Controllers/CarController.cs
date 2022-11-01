@@ -24,11 +24,18 @@ namespace ImparApi.Controllers
             return carsResponse;
         }
 
-        [HttpPost("AddCar")]
-        public async Task<CarResponse> AddCar(CarRequest viewModel)
+        [HttpPost("addCar")]
+        public async Task<CarResponse> AddCar([FromForm] CarRequest viewModel)
         {
             var response = await _carService.AddCar(viewModel);
             return response;
+        }
+
+        [HttpDelete("deleteCar/{carId}")]
+        public async Task<ActionResult> DeleteCar(int carId)
+        {
+            await _carService.RemoveCar(carId);
+            return Ok();
         }
     }
 }
