@@ -25,7 +25,7 @@ namespace ImparApi.Controllers
         }
 
         [HttpPost("AddCar")]
-        public async Task<CarResponse> AddCar(CarRequest viewModel)
+        public async Task<CarResponse> AddCar([FromForm]CarRequest viewModel)
         {
             var response = await _carService.AddCar(viewModel);
             return response;
