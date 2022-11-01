@@ -35,7 +35,7 @@ namespace ImparApi.Business.Services
 
         private static Photo UploadPhoto(CarRequest viewModel)
         {
-            var photoB64 = FileConverter.ConvertImageFileToBase64(viewModel.Photo.Photo);
+            var photoB64 = FileConverter.ConvertImageFileToBase64(viewModel.Photo);
             var photo = new Photo();
             photo.Base64 = photoB64;
             return photo;
