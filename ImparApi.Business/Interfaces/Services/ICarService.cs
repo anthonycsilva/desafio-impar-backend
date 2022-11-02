@@ -13,6 +13,7 @@ namespace ImparApi.Business.Interfaces.Services
     {
         Task<List<CarResponse>> GetAll();
         Task<CarResponse> AddCar(CarRequest viewModel);
+        Task<CarResponse> AlterCar(CarRequest entity, int carId);
         Task RemoveCar(int carId);
     }
 }

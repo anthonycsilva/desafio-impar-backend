@@ -25,6 +25,26 @@ namespace ImparApi.Infra.Data.Repositories
             return newCar;
         }
 
+        public async Task<Car> AlterCar(Car entity)
+        {
+            var car = await _dataContext.Cars
+            .Where(x => x.Id == entity.Id)
+            .FirstOrDefaultAsync();
+
+            Alter(entity, car);
+
+            _dataContext.Cars.Update(car);
+            await _dataContext.SaveChangesAsync();
+            return car;
+        }
+
+        private static void Alter(Car entity, Car car)
+        {
+            car.Name = entity.Name;
+            car.Status = entity.Status;
+            car.Photo = entity.Photo;
+        }
+
         public async Task<List<Car>> GetAll()
         {
             var cars = await _dataContext.Cars
