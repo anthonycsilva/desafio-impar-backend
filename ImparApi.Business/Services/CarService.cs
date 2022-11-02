@@ -25,8 +25,7 @@ namespace ImparApi.Business.Services
         public async Task<CarResponse> AddCar(CarRequest viewModel)
         {
             var car = new Car();
-            Photo photo = UploadPhoto(viewModel);
-            car.Photo = photo;
+            car.Photo = UploadPhoto(viewModel);
             car.Name = viewModel.Name;
             car.Status = viewModel.Status;
             await _carRepository.AddCar(car);
@@ -50,6 +49,24 @@ namespace ImparApi.Business.Services
         public async Task RemoveCar(int carId)
         {
             await _carRepository.RemoveCar(carId);
+        }
+
+        public async Task<CarResponse> AlterCar(CarRequest viewModel, int carId)
+        {
+            Car entity = MappingViewModelToEntity(viewModel, carId);
+            var result = await _carRepository.AlterCar(entity);
+
+            return _mapper.Map<CarResponse>(result);
+        }
+
+        private static Car MappingViewModelToEntity(CarRequest viewModel, int carId)
+        {
+            var entity = new Car();
+            entity.Id = carId;
+            entity.Name = viewModel.Name;
+            entity.Status = viewModel.Status;
+            entity.Photo = UploadPhoto(viewModel);
+            return entity;
         }
     }
 }

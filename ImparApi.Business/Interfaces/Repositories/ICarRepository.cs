@@ -11,6 +11,7 @@ namespace ImparApi.Business.Interfaces.Repositories
     {
         Task<List<Car>> GetAll();
         Task<Car> AddCar(Car newCar);
+        Task<Car> AlterCar(Car entity);
         Task RemoveCar(int carId);
     }
 }
