@@ -31,6 +31,13 @@ namespace ImparApi.Controllers
             return response;
         }
 
+        [HttpPut("alterCar/{carId}")]
+        public async Task<CarResponse> AlterCar([FromForm] CarRequest viewModel, int carId)
+        {
+            var response = await _carService.AlterCar(viewModel, carId);
+            return response;
+        }
+
         [HttpDelete("deleteCar/{carId}")]
         public async Task<ActionResult> DeleteCar(int carId)
         {
